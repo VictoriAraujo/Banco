@@ -8,7 +8,6 @@ import java.util.Iterator;
 public class CaixaChatBox {
     public static void main(String [] args) {
         Scanner scan = new Scanner(System.in);
-        boolean sair = false;
         final int CRIAR = 1;
         final int LOCALIZAR = 2;
         System.out.println("Contas existentes: ");
@@ -55,26 +54,40 @@ public class CaixaChatBox {
             System.out.println(+ DEPOSITAR + " - Depositar: \n" + SACAR+ " - SACAR: \n"+ EXTRATO+ " - Extrato: \n" + TRANSFERIR + " - Transferir \n" + SALDO + " - Saldo: \n" + SAIR + " - Sair: \n");
             escolha = scan.nextInt();
             switch (escolha) {
+                    
                 case DEPOSITAR:
                     System.out.println("Digite quanto deseja depositar: ");
                     double valorDeposito = scan.nextDouble();
                     conta.depositar(valorDeposito);
                     break;
+                    
                 case SACAR:
                     System.out.println("Digite quanto deseja sacar: ");
                     double valorSaque = scan.nextDouble();
                     conta.sacar(valorSaque);
                     break;
+                    
                 case EXTRATO:
-                    System.out.println("Digite a data Inicial: DD/MÊS/ANO");
-                    int diaInicial = scan.nextInt(), mesInicial = scan.nextInt(), anoInicial = scan.nextInt();
+                   System.out.println("Digite a data Inicial: DD/MÊS/ANO");
+                    System.out.println("Dia: ");
+                    int diaInicial = scan.nextInt();
+                    System.out.println("Mês: ");
+                    int mesInicial = scan.nextInt();
+                    System.out.println("Ano: ");
+                    int anoInicial = scan.nextInt();
                     Data datainicial = new Data(diaInicial, mesInicial, anoInicial);
-                    scan.nextLine();
+                    
                     System.out.println("Digite a data Final: DD/MÊS/ANO");
-                    int diaFinal = scan.nextInt(), mesFinal = scan.nextInt(), anoFinal = scan.nextInt();
+                    System.out.println("Dia: ");
+                    int diaFinal = scan.nextInt();
+                    System.out.println("Mês: ");
+                    int mesFinal = scan.nextInt();
+                    System.out.println("Ano: ");
+                    int anoFinal = scan.nextInt();
                     Data dataFinal = new Data(diaFinal, mesFinal, anoFinal);
-                    System.out.println(conta.criarExtrato(datainicial,dataFinal));
+                    System.out.println(conta.criarExtrato(datainicial,dataFinal).formatar());
                     break;
+                    
                 case TRANSFERIR:
                     System.out.println("Digite o número da pessoa que você deseja transferir: ");
                     int numeroID = scan.nextInt();
@@ -83,8 +96,8 @@ public class CaixaChatBox {
                     double valor = scan.nextDouble();
                     conta.transferir(agencia.localizarConta(numeroID), valor);
                     break;
+                    
                 case SALDO:
-
                     System.out.println("O seu saldo é de "+ conta.getSaldo());
                     break;
 
